@@ -9,7 +9,7 @@ const Header=()=>{
 
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <a className="me-3 py-2 text-dark text-decoration-none" href="#">Main Page</a>
-            <a className="me-3 py-2 text-dark text-decoration-none" href="#">Categories</a>
+            <a className="me-3 py-2 text-dark text-decoration-none" href="#/categories">Categories</a>
             <a className="me-3 py-2 text-dark text-decoration-none" href="#/login">Login</a>
         
           </nav>
