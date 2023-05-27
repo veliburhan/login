@@ -11,13 +11,13 @@ function Home() {
     const dizi=["beyaz","kırmızı","yeşil","sarı"]
 
    useEffect(()=>{
-    api.get("https://api.adoptez1artisan.com/public/categories/listMainCategories")
+    api.get("/public/categories/listMainCategories")
     .then(response => {
         const tempCategory=[]
         
         response.data.data.map((item,index)=>{
             tempCategory.push(<Box_item key={index} id={item.id} name={item.name} image={item.image} slug={item.slug} />)
-            console.log("<box_item> ", tempCategory)
+            
 
         })
 

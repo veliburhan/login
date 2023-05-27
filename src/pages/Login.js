@@ -1,21 +1,28 @@
 import {useState} from "react"
 import useApi from "../Hooks/useApi"
+import { connect } from "react-redux"
 
-function Login() {
+function Login(props) {
     const Api=useApi()
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
 
-    const Login=()=>{
+    const LoginUser=()=>{
         const PostData={email,password}
         console.log("POST DATA >>> ", PostData)
-        Api.post(`https://api.adoptez1artisan.com/auth/login`,PostData)
+        Api.post(`/auth/login`,PostData)
+        .then(response=>{
+            props.dispatch({
+                type:"set_token",
+                payload:{token:response.data.data.token}
+            }
+               
+            )
+        })
 
+        .catch(error=>{alert("Bir hata oluştu. Lütfen tekrar deneyin.")})
 
-
-
-
-        
+       
     }
 
     return (
@@ -33,7 +40,7 @@ function Login() {
                     <label htmlFor="floatingPassword">Password</label>
                 </div>
                 
-                <button className="w-100 btn btn-lg btn-primary my-2" type="button" onClick={Login}>Giriş</button>
+                <button className="w-100 btn btn-lg btn-primary my-2" type="button" onClick={LoginUser}>Giriş</button>
                 <p className="mt-5 mb-3 text-muted">© 2022–2023</p>
             </form>
         </main>
@@ -42,4 +49,10 @@ function Login() {
     )
 }
 
-export default Login
+const mapStateToProps=(state)=>{
+    return{
+        ...state
+    }
+}
+
+export default connect(mapStateToProps)(Login)

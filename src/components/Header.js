@@ -1,4 +1,7 @@
-const Header=()=>{
+import { connect } from "react-redux"
+
+
+const Header=(props)=>{
     return(
         <header>
         <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
@@ -10,7 +13,16 @@ const Header=()=>{
           <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <a className="me-3 py-2 text-dark text-decoration-none" href="#">Main Page</a>
             <a className="me-3 py-2 text-dark text-decoration-none" href="#/categories">Categories</a>
-            <a className="me-3 py-2 text-dark text-decoration-none" href="#/login">Login</a>
+            {
+              props.appDataState.user ? 
+              (<a className="btn btn-primary" href="#">
+                {props.appDataState.user.fullname}
+              </a>)
+              :
+              (<a className="me-3 py-2 text-dark text-decoration-none" href="#/login">Login</a>)
+            }
+            
+            
         
           </nav>
         </div>
@@ -20,4 +32,10 @@ const Header=()=>{
     )
 }
 
-export default Header
+const mapStateToProps=(state)=>{
+  return{
+    ...state
+  }
+}
+
+export default connect(mapStateToProps)(Header)

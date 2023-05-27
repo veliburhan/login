@@ -1,12 +1,13 @@
 
 const initialState={
-    token:null
+    token:localStorage.getItem("token")
 }
 
 
 const authReducer =(state=initialState,action)=>{
     switch (action.type) {
         case "set_token": 
+        localStorage.setItem("token", action.payload.token)
         return {
             ...state,
             token:action.payload.token

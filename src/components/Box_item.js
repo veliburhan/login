@@ -1,7 +1,7 @@
 
 
 function Box_item(props){
-    console.log("Box_item Props >> ", props)
+   
     return(
         <div className="col">
                     <div className="card mb-4 rounded-3 shadow-sm border-primary">
